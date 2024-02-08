@@ -26,6 +26,7 @@ public class Main {
         SavingsAccount savingsAccount = new SavingsAccount(initialBalanceAsDouble, customer);
         InvestmentAccount investmentAccount = new InvestmentAccount(initialBalanceAsDouble, customer);
 
+        savingsAccount.setInterestRate(-0.3);
 
         System.out.println(investmentAccount);
         System.out.println(savingsAccount);

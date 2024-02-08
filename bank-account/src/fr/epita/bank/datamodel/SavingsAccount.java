@@ -7,10 +7,25 @@ public class SavingsAccount extends Account {
         super(initialBalanceAsDouble, customer);
     }
 
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
+        if (interestRate < 0){
+            return;
+        }
+        this.interestRate = interestRate;
+    }
+
+
     @Override
     public String toString() {
         return "SavingsAccount{" +
                 "interestRate=" + interestRate +
                 " " + super.toString() + '}';
     }
+
+
 }
