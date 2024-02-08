@@ -8,4 +8,12 @@ public class Customer {
         this.name = customerName;
         this.address = customerAddress;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

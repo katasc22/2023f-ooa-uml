@@ -2,6 +2,7 @@ package fr.epita.bank.launcher;
 
 import fr.epita.bank.datamodel.Account;
 import fr.epita.bank.datamodel.Customer;
+import fr.epita.bank.datamodel.InvestmentAccount;
 import fr.epita.bank.datamodel.SavingsAccount;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public class Main {
 
         Customer customer = new Customer(customerName, customerAddress);
 
-        SavingsAccount account = new SavingsAccount(initialBalanceAsDouble, customer);
+        SavingsAccount savingsAccount = new SavingsAccount(initialBalanceAsDouble, customer);
+        InvestmentAccount investmentAccount = new InvestmentAccount(initialBalanceAsDouble, customer);
 
+
+        System.out.println(investmentAccount);
 
 
 
