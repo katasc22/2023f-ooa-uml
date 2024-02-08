@@ -6,4 +6,11 @@ public class SavingsAccount extends Account {
     public SavingsAccount(double initialBalanceAsDouble, Customer customer) {
         super(initialBalanceAsDouble, customer);
     }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "interestRate=" + interestRate +
+                " " + super.toString() + '}';
+    }
 }

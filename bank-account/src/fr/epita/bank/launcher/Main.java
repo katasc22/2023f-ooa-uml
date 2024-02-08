@@ -28,6 +28,7 @@ public class Main {
 
 
         System.out.println(investmentAccount);
+        System.out.println(savingsAccount);
 
 
 

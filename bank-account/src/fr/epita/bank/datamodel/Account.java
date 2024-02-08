@@ -1,6 +1,6 @@
 package fr.epita.bank.datamodel;
 
-public abstract class Account {
+public class Account {
 
     private Customer customer;
     private double balance;
