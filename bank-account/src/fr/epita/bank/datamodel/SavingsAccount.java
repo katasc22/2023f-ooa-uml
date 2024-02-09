@@ -1,5 +1,7 @@
 package fr.epita.bank.datamodel;
 
+import fr.epita.bank.launcher.Main;
+
 public class SavingsAccount extends Account {
     private double interestRate;
 
@@ -18,6 +20,8 @@ public class SavingsAccount extends Account {
         }
         this.interestRate = interestRate;
     }
+
+
 
 
     @Override
