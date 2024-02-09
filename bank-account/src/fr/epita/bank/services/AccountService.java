@@ -12,4 +12,8 @@ public class AccountService {
             account.setBalance(finalBalance);
         }
     }
+
+    public double calculateInstantInterests(SavingsAccount account) {
+       return account.getInterestRate() * account.getBalance();
+    }
 }
