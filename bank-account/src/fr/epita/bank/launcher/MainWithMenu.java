@@ -15,7 +15,7 @@ public class MainWithMenu {
             answer = mainMenu(scanner);
             switch (answer) {
                 case "C":
-                    Account account = createAccount();
+                    Account account = GecreateAccount();
                     break;
                 case "L":
                     break;
