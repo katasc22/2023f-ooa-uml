@@ -28,7 +28,6 @@ public class MainWithMenu {
                     break;
             }
         }
-
     }
 
     private static Account createAccount(Scanner in) {
