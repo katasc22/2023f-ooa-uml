@@ -1,7 +1,6 @@
 package fr.epita.bank.launcher;
 
 import fr.epita.bank.datamodel.Account;
-import fr.epita.bank.datamodel.Customer;
 import fr.epita.bank.datamodel.InvestmentAccount;
 import fr.epita.bank.datamodel.SavingsAccount;
 
@@ -16,7 +15,7 @@ public class MainWithMenu {
             answer = mainMenu(scanner);
             switch (answer) {
                 case "C":
-                    Account account = createAccount(scanner);
+                    Account account = GecreateAccount();
                     break;
                 case "L":
                     break;
@@ -28,6 +27,7 @@ public class MainWithMenu {
                     break;
             }
         }
+
     }
 
     private static Account createAccount(Scanner in) {
@@ -35,29 +35,17 @@ public class MainWithMenu {
         System.out.println("Please select what kind of account");
         System.out.println("(S) - savings");
         System.out.println("(I) - investments");
-
         String answer = in.nextLine();
-        System.out.println("type an initial balance");
-        String initialBalance = in.nextLine();
-
-        double initialBalanceAsDouble = Double.parseDouble(initialBalance);
         if (answer.equals("S")){
-            resultAccount = new SavingsAccount(initialBalanceAsDouble,createCustomer(in));
+            resultAccount = new SavingsAccount();
         }else if (answer.equals("I")){
-            resultAccount = new InvestmentAccount(initialBalanceAsDouble, createCustomer(in));
+            resultAccount = new InvestmentAccount();
         } else {
             resultAccount = null;
         }
         return resultAccount;
-    }
 
-    private static Customer createCustomer(Scanner in){
-        System.out.println("type a customer name");
-        String customerName = in.nextLine();
-        System.out.println("type a customer address");
-        String customerAddress = in.nextLine();
 
-        return new Customer(customerName, customerAddress);
     }
 
     private static String mainMenu(Scanner scanner) {
@@ -66,6 +54,7 @@ public class MainWithMenu {
         System.out.println("(C) - Create an account");
         System.out.println("(L) - List your accounts");
         System.out.println("(E) - Exit the application");
-        return scanner.nextLine();
+        String answer = scanner.nextLine();
+        return answer;
     }
 }

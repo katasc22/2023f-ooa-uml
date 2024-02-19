@@ -1,19 +1,32 @@
 package fr.epita.geometry.launcher;
 
 import fr.epita.geometry.datamodel.Circle;
-import fr.epita.geometry.datamodel.Square;
-import fr.epita.geometry.datamodel.Triangle;
+import fr.epita.geometry.service.GeometryService;
+
+import java.util.Arrays;
+import java.util.List;
+
 
 public class Main {
 
     public static void main(String[] args) {
-        Circle circle = new Circle(20);
-        Square square = new Square(230);
-        Triangle triangle = new Triangle(33,33,33,33);
+        Circle circle1 = new Circle(2);
+        Circle circle2 = new Circle(3);
+        Circle circle3 = new Circle(4);
 
-        System.out.println("Circle perimeter : " + circle.getPerimeter() + "\nCircle area: "+ circle.getArea());
-        System.out.println("Square perimeter : " + square.getPerimeter() + "\nSquare area: "+ square.getArea());
-        System.out.println("Triangle perimeter : " + triangle.getPerimeter() + "\nTriangle area: "+ triangle.getArea());
+        List<Circle> circles = Arrays.asList(circle1, circle2, circle3);
+        double globalArea = 0.0;
+        for (int i = 0; i < circles.size(); i++) {
+            globalArea += GeometryService.getArea(circles.get(i));
+        }
+
+        circles.stream()
+                .mapToDouble(GeometryService::getArea)
+                .sum();
+
+
 
     }
+
+
 }
