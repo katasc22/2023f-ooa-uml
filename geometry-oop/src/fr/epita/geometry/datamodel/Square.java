@@ -3,22 +3,23 @@ package fr.epita.geometry.datamodel;
 public class Square implements Shape{
 
 
-    private double side;
+    private Rectangle rectangle;
 
     public double getSide() {
-        return side;
+        return rectangle.getWidth();
     }
 
     public void setSide(double side) {
-        this.side = side;
+        this.rectangle.setWidth(side);
+        this.rectangle.setHeight(side);
     }
 
     public Square(double side) {
-        this.side = side;
+        this.rectangle = new Rectangle(side, side);
     }
 
-
+    @Override
     public double calculateArea() {
-        return Math.pow(this.side, 2);
+        return rectangle.calculateArea();
     }
 }
