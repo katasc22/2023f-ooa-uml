@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 public class FileExtractionTest {
 
@@ -19,27 +22,34 @@ public class FileExtractionTest {
         List<String> lines = Files.readAllLines(currentFilePath);
         System.out.println(lines);
 
-        List<Patient> patientList = new ArrayList<>();
-        lines.remove(0);
-
-        for (String line : lines) {
+        List<Patient> patients = new ArrayList<>();
+        //data mapping
+        //pat_num_HC;pat_lastname;pat_firstname;pat_address;pat_tel;pat_insurance_id;pat_subscription_date
+        //"1256987452365";Martin;Bernard;Chatillon;"0106060606";2;01/10/2010
+        for (String line : lines){
             String[] parts = line.split(";");
-            String patientHCNr = parts[0];
-            String lastname = parts[1];
-            String firstname= parts[2];
-            String address= parts[3];
-            String tel = parts[4];
-            String insuranceID= parts[5];
-
-            //String[] dateParts = parts[6].split("/");
-
-            LocalDate subscriptionDate = LocalDate.parse(parts[6], DateTimeFormatter.ofPattern("dd/MM/yyyy")); //OR: LocalDate.of(Integer.parseInt(dateParts[2]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[0]));
-
-            patientList.add(new Patient(patientHCNr,lastname,firstname,address, tel,insuranceID,subscriptionDate));
+            Patient patient = extractPatient(parts);
+            patients.add(patient);
         }
 
-        for (Patient p : patientList){
-            System.out.println(p.toString());
-        }
+        List<Patient> patientsWithSteam = lines.stream()
+                .map(s -> extractPatient(s.split(";")))
+                .toList();
+
+
+    }
+
+    private static Patient extractPatient(String[] row) {
+        Patient patient = new Patient();
+        patient.setHealthCareNumber(row[0]);
+        patient.setLastName(row[1]);
+        patient.setFirstName(row[2]);
+        patient.setAddress(row[3]);
+        patient.setPhoneNumber(row[4]);
+        patient.setInsuranceId(Integer.parseInt(row[5]));
+        //LocalDate today = LocalDate.of(2024, 02, 19);
+        LocalDate subscriptionDate = LocalDate.parse(row[6], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        patient.setSubscriptionDate(subscriptionDate);
+        return patient;
     }
 }
