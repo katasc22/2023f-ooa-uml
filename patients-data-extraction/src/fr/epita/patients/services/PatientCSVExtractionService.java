@@ -5,6 +5,7 @@ import fr.epita.patients.datamodel.Patient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,21 +32,24 @@ public class PatientCSVExtractionService {
         return patients;
     }
 
-    public void update(List<Patient> patients) throws PatientExtractionException {
+    public void update(List<Patient> patients) throws PatientExtractionException, PatientUpdateException {
         Path currentFilePath = Path.of("patients-data-extraction/data/patients-out.csv");
-        System.out.println("looking for file at this location:" + currentFilePath.toFile().getAbsolutePath());
-        List<String> lines = new ArrayList<>();
-
-
-        for (String line : lines){
-            String[] parts = line.split(";");
-            Patient patient = extractPatient(parts);
-            patients.add(patient);
+        String patientsAsCsv = "";
+        for (Patient patient : patients){
+            //pat_num_HC;pat_lastname;pat_firstname;pat_address;pat_tel;pat_insurance_id;pat_subscription_date
+            patientsAsCsv += patient.getHealthCareNumber() +";";
+            patientsAsCsv += patient.getLastName() +";";
+            patientsAsCsv += patient.getFirstName() +";";
+            patientsAsCsv += patient.getAddress() +";";
+            patientsAsCsv += patient.getPhoneNumber() +";";
+            patientsAsCsv += patient.getInsuranceId() +";";
+            patientsAsCsv += patient.getSubscriptionDate().format( DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            patientsAsCsv += System.getProperty("line.separator");
         }
         try {
-            Files.writeString(currentFilePath, "", StandardOpenOption.WRITE);
+            Files.write(currentFilePath, patientsAsCsv.getBytes(), StandardOpenOption.WRITE);
         } catch (IOException e){
-            throw new PatientExtractionException(e);
+            throw new PatientUpdateException(e);
         }
     }
 
