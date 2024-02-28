@@ -15,10 +15,7 @@ public class PatientCSVExtractionServiceTest {
 
     public static void main(String[] args) throws Exception, PatientUpdateException {
         readTest();
-
         updateTest();
-
-
     }
 
     private static void updateTest() throws PatientUpdateException, Exception {
