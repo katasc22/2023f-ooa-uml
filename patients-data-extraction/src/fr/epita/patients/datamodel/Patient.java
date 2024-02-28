@@ -12,6 +12,8 @@ public class Patient {
     private int insuranceId ;
     private LocalDate subscriptionDate;
 
+
+
     public String getHealthCareNumber() {
         return healthCareNumber;
     }

@@ -1,5 +1,6 @@
 package fr.epita.patients.tests;
 
+
 import fr.epita.patients.datamodel.Patient;
 
 import java.io.IOException;
@@ -9,9 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
 
 public class FileExtractionTest {
 
