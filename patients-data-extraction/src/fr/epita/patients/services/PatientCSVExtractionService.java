@@ -31,21 +31,25 @@ public class PatientCSVExtractionService {
         return patients;
     }
 
-    public void update(List<Patient> patients) throws PatientExtractionException {
+    public void update(List<Patient> patients) throws PatientExtractionException, PatientUpdateException {
         Path currentFilePath = Path.of("patients-data-extraction/data/patients-out.csv");
         System.out.println("looking for file at this location:" + currentFilePath.toFile().getAbsolutePath());
-        List<String> lines = new ArrayList<>();
+        String patientsasCSV = "";
 
-
-        for (String line : lines){
-            String[] parts = line.split(";");
-            Patient patient = extractPatient(parts);
-            patients.add(patient);
+        for (Patient p : patients){
+            patientsasCSV += p.getHealthCareNumber()+";";
+            patientsasCSV += p.getLastName()+";";
+            patientsasCSV += p.getFirstName()+";";
+            patientsasCSV += p.getAddress()+";";
+            patientsasCSV += p.getPhoneNumber()+";";
+            patientsasCSV += p.getInsuranceId()+";";
+            patientsasCSV += p.getSubscriptionDate().format( DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            patientsasCSV += "\n";
         }
         try {
             Files.writeString(currentFilePath, "", StandardOpenOption.WRITE);
         } catch (IOException e){
-            throw new PatientExtractionException(e);
+            throw new PatientUpdateException(e);
         }
     }
 
