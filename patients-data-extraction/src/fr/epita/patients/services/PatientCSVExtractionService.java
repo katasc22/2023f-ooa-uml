@@ -24,6 +24,7 @@ public class PatientCSVExtractionService {
             throw new PatientExtractionException(e);
         }
         List<Patient> patients = new ArrayList<>();
+        lines.remove(0);
         for (String line : lines){
             String[] parts = line.split(";");
             Patient patient = extractPatient(parts);
