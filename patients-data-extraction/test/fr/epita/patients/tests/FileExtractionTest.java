@@ -23,6 +23,7 @@ public class FileExtractionTest {
         System.out.println(lines);
 
         List<Patient> patients = new ArrayList<>();
+        lines.remove(0);
         //data mapping
         //pat_num_HC;pat_lastname;pat_firstname;pat_address;pat_tel;pat_insurance_id;pat_subscription_date
         //"1256987452365";Martin;Bernard;Chatillon;"0106060606";2;01/10/2010
@@ -32,10 +33,11 @@ public class FileExtractionTest {
             patients.add(patient);
         }
 
-        List<Patient> patientsWithSteam = lines.stream()
+        List<Patient> patientsWithStream = lines.stream()
                 .map(s -> extractPatient(s.split(";")))
                 .toList();
 
+        System.out.println(patientsWithStream);
 
     }
 

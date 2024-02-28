@@ -32,11 +32,11 @@ public class PatientCSVExtractionService {
     }
 
     public void update(List<Patient> patients) throws PatientExtractionException {
-        Path currentFilePath = Path.of("patients-data-extraction/data/patients.csv");
+        Path currentFilePath = Path.of("patients-data-extraction/data/patients-out.csv");
         System.out.println("looking for file at this location:" + currentFilePath.toFile().getAbsolutePath());
         List<String> lines = new ArrayList<>();
 
-        List<Patient> patients = new ArrayList<>();
+
         for (String line : lines){
             String[] parts = line.split(";");
             Patient patient = extractPatient(parts);
