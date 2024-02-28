@@ -1,12 +1,9 @@
 package fr.epita.patients.services;
 
-public class PatientUpdateException extends Exception {
+import java.io.IOException;
 
-
-    public PatientUpdateException(Exception e){
+public class PatientUpdateException extends Throwable {
+    public PatientUpdateException(Exception e) {
         super(e);
     }
-
-
-
 }
