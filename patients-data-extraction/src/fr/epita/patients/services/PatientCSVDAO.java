@@ -5,14 +5,13 @@ import fr.epita.patients.datamodel.Patient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientCSVExtractionService {
+public class PatientCSVDAO {
 
     public List<Patient> read() throws PatientExtractionException {
         Path currentFilePath = Path.of("patients-data-extraction/data/patients.csv");
