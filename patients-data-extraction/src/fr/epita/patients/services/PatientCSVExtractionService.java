@@ -33,6 +33,8 @@ public class PatientCSVExtractionService {
         return patients;
     }
 
+    //serialization, datamodeling, businesslogic (average of values usw), jdbc= java database connectivity
+
     public void update(List<Patient> patients) throws PatientExtractionException, PatientUpdateException {
         Path currentFilePath = Path.of("patients-data-extraction/data/patients-out.csv");
         String patientsAsCsv = "";
