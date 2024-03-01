@@ -1,8 +1,7 @@
 package fr.epita.patients.tests;
 
 import fr.epita.patients.datamodel.Patient;
-import fr.epita.patients.services.PatientCSVExtractionService;
-import fr.epita.patients.services.PatientExtractionException;
+import fr.epita.patients.services.PatientCSVDAO;
 import fr.epita.patients.services.PatientUpdateException;
 
 import java.nio.file.Files;
@@ -19,7 +18,7 @@ public class PatientCSVExtractionServiceTest {
     }
 
     private static void updateTest() throws PatientUpdateException, Exception {
-        PatientCSVExtractionService service = new PatientCSVExtractionService();
+        PatientCSVDAO service = new PatientCSVDAO();
         List<Patient> patients = new ArrayList<>();
         Patient p = new Patient();
         p.setHealthCareNumber("1234");
@@ -32,7 +31,7 @@ public class PatientCSVExtractionServiceTest {
     }
 
     private static void readTest() throws Exception {
-        PatientCSVExtractionService service = new PatientCSVExtractionService();
+        PatientCSVDAO service = new PatientCSVDAO();
         List<Patient> patients = service.read();
         System.out.println("read patient list of size:" +patients.size());
         if (patients.size() != 6){
