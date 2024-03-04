@@ -2,7 +2,7 @@ package fr.epita.patients.tests;
 
 import fr.epita.patients.datamodel.Patient;
 import fr.epita.patients.services.PatientCSVDAO;
-import fr.epita.patients.services.PatientUpdateException;
+import fr.epita.patients.services.PatientSaveException;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,12 +12,12 @@ import java.util.List;
 public class PatientCSVExtractionServiceTest {
 
 
-    public static void main(String[] args) throws Exception, PatientUpdateException {
+    public static void main(String[] args) throws Exception, PatientSaveException {
         readTest();
         updateTest();
     }
 
-    private static void updateTest() throws PatientUpdateException, Exception {
+    private static void updateTest() throws PatientSaveException, Exception {
         PatientCSVDAO service = new PatientCSVDAO();
         List<Patient> patients = new ArrayList<>();
         Patient p = new Patient();

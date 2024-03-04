@@ -32,9 +32,7 @@ public class PatientCSVDAO {
         return patients;
     }
 
-    //serialization, datamodeling, businesslogic (average of values usw), jdbc= java database connectivity
-
-    public void update(List<Patient> patients) throws PatientExtractionException, PatientUpdateException {
+    public void update(List<Patient> patients) throws PatientExtractionException, PatientSaveException {
         Path currentFilePath = Path.of("patients-data-extraction/data/patients-out.csv");
         String patientsAsCsv = "";
         for (Patient patient : patients){
@@ -51,7 +49,7 @@ public class PatientCSVDAO {
         try {
             Files.write(currentFilePath, patientsAsCsv.getBytes(), StandardOpenOption.WRITE);
         } catch (IOException e){
-            throw new PatientUpdateException(e);
+            throw new PatientSaveException(e);
         }
     }
 
