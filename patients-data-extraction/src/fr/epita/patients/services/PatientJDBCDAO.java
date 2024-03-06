@@ -26,8 +26,4 @@ public class PatientJDBCDAO {
     List<Patient> readAll(){
         return new ArrayList<>();
     }
-
-    Patient readOne(String id){
-
-    }
 }
